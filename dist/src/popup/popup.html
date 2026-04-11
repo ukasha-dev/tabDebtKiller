@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tab Debt Killer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      width: 260px;
+      padding: 16px;
+      background: #1a1a2e;
+      color: #e0e0e0;
+    }
+    h1 { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #a78bfa; }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 9px 12px;
+      margin-bottom: 8px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      background: #2d2d4e;
+      color: #e0e0e0;
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: #3d3d6e; }
+    .btn:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+    .btn.primary { background: #7c3aed; color: #fff; }
+    .btn.primary:hover { background: #6d28d9; }
+    .save-row { display: flex; gap: 6px; margin-bottom: 8px; }
+    .save-row input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #3d3d6e;
+      background: #2d2d4e;
+      color: #e0e0e0;
+      font-size: 12px;
+    }
+    .save-row input:focus { outline: 2px solid #a78bfa; }
+    .save-row .btn { width: auto; margin: 0; padding: 8px 12px; }
+    .divider { border: none; border-top: 1px solid #2d2d4e; margin: 10px 0; }
+    #status { font-size: 11px; color: #a78bfa; min-height: 16px; margin-top: 4px; }
+    /* Upgrade modal */
+    #upgrade-modal {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7);
+      align-items: center; justify-content: center;
+      z-index: 100;
+    }
+    #upgrade-modal.show { display: flex; }
+    .modal-box {
+      background: #1a1a2e;
+      border: 1px solid #7c3aed;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 220px;
+      text-align: center;
+    }
+    .modal-box h2 { font-size: 13px; margin-bottom: 8px; color: #a78bfa; }
+    .modal-box p { font-size: 11px; margin-bottom: 12px; color: #ccc; }
+    .modal-box a {
+      display: block;
+      padding: 8px;
+      background: #7c3aed;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .modal-box button {
+      background: none; border: none; color: #888; font-size: 11px; cursor: pointer;
+    }
+  </style>
+  <script type="module" crossorigin src="/src/popup/popup.js"></script>
+  <link rel="modulepreload" crossorigin href="/modulepreload-polyfill.js">
+</head>
+<body>
+  <h1>⚡ Tab Debt Killer</h1>
+
+  <button class="btn primary" id="btn-group">🗂 Group Tabs</button>
+
+  <div class="save-row">
+    <input type="text" id="session-name" placeholder="Session name (optional)" />
+    <button class="btn primary" id="btn-save">Save</button>
+  </div>
+
+  <button class="btn" id="btn-sidebar">📋 Open Session Manager</button>
+  <hr class="divider" />
+  <button class="btn" id="btn-settings">⚙️ Settings</button>
+
+  <div id="status"></div>
+
+  <div id="upgrade-modal">
+    <div class="modal-box">
+      <h2>Session Limit Reached</h2>
+      <p>Free tier allows up to 5 saved sessions. Upgrade to Pro for unlimited sessions.</p>
+      <a href="https://tabdebtkiller.lemonsqueezy.com" target="_blank">Upgrade to Pro →</a>
+      <button id="modal-close">Maybe later</button>
+    </div>
+  </div>
+
+</body>
+</html>

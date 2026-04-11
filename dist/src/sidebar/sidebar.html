@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Session Manager</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 12px 14px;
+      background: #12122a;
+      border-bottom: 1px solid #2d2d4e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    header h1 { font-size: 14px; color: #a78bfa; flex: 1; }
+    #search {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #3d3d6e;
+      background: #2d2d4e;
+      color: #e0e0e0;
+      font-size: 12px;
+      margin: 10px 14px;
+      width: calc(100% - 28px);
+    }
+    #search:focus { outline: 2px solid #a78bfa; }
+    #session-list { flex: 1; overflow-y: auto; padding: 0 14px 14px; }
+    .session-card {
+      background: #2d2d4e;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .session-header {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .session-header:hover { background: #3d3d6e; }
+    .session-info { flex: 1; min-width: 0; }
+    .session-name {
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .session-name[contenteditable="true"] {
+      outline: 1px solid #a78bfa;
+      border-radius: 3px;
+      padding: 1px 4px;
+      white-space: nowrap;
+    }
+    .session-meta { font-size: 11px; color: #888; margin-top: 2px; }
+    .favicons { display: flex; gap: 3px; }
+    .favicons img { width: 14px; height: 14px; border-radius: 2px; }
+    .session-actions { display: flex; gap: 6px; }
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 2px 4px;
+      border-radius: 4px;
+      color: #888;
+    }
+    .icon-btn:hover { color: #e0e0e0; background: #4d4d7e; }
+    .icon-btn:focus-visible { outline: 2px solid #a78bfa; }
+    .session-tabs {
+      display: none;
+      padding: 0 12px 10px;
+      border-top: 1px solid #3d3d6e;
+    }
+    .session-tabs.open { display: block; }
+    .tab-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 0;
+      font-size: 11px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .tab-row:hover { background: #3d3d6e; padding-left: 4px; }
+    .tab-row img { width: 12px; height: 12px; }
+    .tab-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tab-url { color: #666; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px; }
+    .restore-btns { display: flex; gap: 6px; padding: 8px 12px; border-top: 1px solid #3d3d6e; }
+    .restore-btns button {
+      flex: 1;
+      padding: 6px;
+      border: none;
+      border-radius: 5px;
+      font-size: 11px;
+      cursor: pointer;
+      background: #7c3aed;
+      color: #fff;
+    }
+    .restore-btns button:hover { background: #6d28d9; }
+    .restore-btns button:focus-visible { outline: 2px solid #a78bfa; }
+    .empty { text-align: center; color: #555; font-size: 13px; padding: 40px 0; }
+    .chevron { transition: transform 0.2s; display: inline-block; }
+    .chevron.open { transform: rotate(90deg); }
+  </style>
+  <script type="module" crossorigin src="/src/sidebar/sidebar.js"></script>
+  <link rel="modulepreload" crossorigin href="/modulepreload-polyfill.js">
+</head>
+<body>
+  <header>
+    <h1>⚡ Session Manager</h1>
+  </header>
+  <input type="search" id="search" placeholder="Search sessions or tabs…" />
+  <div id="session-list"></div>
+</body>
+</html>

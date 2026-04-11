@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tab Debt Killer — Settings</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 32px;
+      max-width: 480px;
+    }
+    h1 { font-size: 18px; color: #a78bfa; margin-bottom: 24px; }
+    h2 { font-size: 13px; color: #a78bfa; margin: 20px 0 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+    label { display: block; font-size: 13px; margin-bottom: 12px; }
+    label span { display: block; color: #888; font-size: 11px; margin-top: 2px; }
+    input[type="number"], input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #3d3d6e;
+      background: #2d2d4e;
+      color: #e0e0e0;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    input:focus { outline: 2px solid #a78bfa; }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .toggle-row label { margin: 0; }
+    input[type="checkbox"] { width: 18px; height: 18px; accent-color: #7c3aed; cursor: pointer; }
+    .btn {
+      padding: 9px 18px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      background: #7c3aed;
+      color: #fff;
+      margin-top: 8px;
+    }
+    .btn:hover { background: #6d28d9; }
+    .btn:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+    #license-status { font-size: 12px; margin-top: 8px; min-height: 16px; }
+    .success { color: #4ade80; }
+    .error { color: #f87171; }
+    #save-status { font-size: 12px; color: #4ade80; margin-top: 12px; min-height: 16px; }
+    .tier-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #2d2d4e;
+      color: #a78bfa;
+      margin-left: 8px;
+    }
+    .tier-badge.pro { background: #7c3aed; color: #fff; }
+  </style>
+</head>
+<body>
+  <h1>⚡ Tab Debt Killer Settings</h1>
+
+  <h2>Resurfacing</h2>
+  <div class="toggle-row">
+    <label for="resurfacing-enabled">Enable tab resurfacing</label>
+    <input type="checkbox" id="resurfacing-enabled" />
+  </div>
+  <label>
+    Token match threshold
+    <span>Minimum matching keywords to show a suggestion (default: 2)</span>
+    <input type="number" id="token-threshold" min="1" max="10" value="2" />
+  </label>
+  <label>
+    Overlay dismiss timeout (ms)
+    <span>How long the overlay stays visible without interaction (default: 8000)</span>
+    <input type="number" id="overlay-dismiss" min="1000" max="30000" step="500" value="8000" />
+  </label>
+
+  <h2>Auto-Grouping</h2>
+  <label>
+    Auto-group threshold
+    <span>Automatically group tabs when count exceeds this number (0 = disabled)</span>
+    <input type="number" id="auto-group-threshold" min="0" max="200" value="10" />
+  </label>
+
+  <button class="btn" id="btn-save">Save Settings</button>
+  <div id="save-status"></div>
+
+  <h2>License
+    <span class="tier-badge" id="tier-badge">Free</span>
+  </h2>
+  <label>
+    License key
+    <span>Enter your Lemon Squeezy license key to activate Pro features</span>
+    <input type="text" id="license-key" placeholder="XXXX-XXXX-XXXX-XXXX" autocomplete="off" />
+  </label>
+  <button class="btn" id="btn-activate">Activate</button>
+  <div id="license-status"></div>
+
+  <script src="settings.js" type="module"></script>
+</body>
+</html>
